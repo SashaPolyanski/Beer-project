@@ -6,9 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { setAllBeers } from '../../../bll/slices/beer';
 import { RootState } from '../../../bll/store';
 import { api } from '../../../dal/api';
-// @ts-ignore
 import arrowImage from '../../../features/images/arrowSing.png';
-// @ts-ignore
 import spreadImage from '../../../features/images/spreadSign.png';
 import Pagination from '../../components/pagination/Pagination';
 import { useDebounce } from '../../utilsFunc/useDebounceHOOK/useDebounce';
