@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import Bear from './ui/pages/beer/Bear';
+import Beer from './ui/pages/beer/Beer';
 import Main from './ui/pages/main/Main';
 
 const App = () => (
   <div className="App">
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="beer/:id" element={<Bear />} />
+      <Route path="beer/:id" element={<Beer />} />
     </Routes>
   </div>
 );

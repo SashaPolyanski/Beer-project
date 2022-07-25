@@ -1,76 +1,76 @@
 import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { setAllBeers } from '../../../bll/slices/beer';
-import { RootState } from '../../../bll/store';
-import { api } from '../../../dal/api';
-import arrowImage from '../../../features/images/arrowSing.png';
-import spreadImage from '../../../features/images/spreadSign.png';
+import {
+  SelectAllBeer,
+  SelectCurrentPage,
+  SelectIsLoading,
+  SelectPerPage,
+} from '../../../bll/selectors/selectors';
+import { fetchBeers } from '../../../bll/slices/beers';
+import { useAppDispatch } from '../../../bll/store';
 import Pagination from '../../components/pagination/Pagination';
+import Preloader from '../../components/preloader/Preloader';
 import { useDebounce } from '../../utilsFunc/useDebounceHOOK/useDebounce';
 import Header from '../header/Header';
-import './Main.scss';
 
 const Main = () => {
   const [searchValue, setSearchValue] = useState('');
   const [show, setShow] = useState<number[]>([]);
-  const allBeer = useSelector((state: RootState) => state.beer.beers);
-  const perPage = useSelector((state: RootState) => state.beer.perPage);
-  const currentPage = useSelector((state: RootState) => state.beer.currentPage);
-  const dispatch = useDispatch();
+  const allBeer = useSelector(SelectAllBeer);
+  const perPage = useSelector(SelectPerPage);
+  const currentPage = useSelector(SelectCurrentPage);
+  const loading = useSelector(SelectIsLoading);
+
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    const getBeers = async () => {
-      const res: any = await api.getBeers(currentPage, perPage);
-      dispatch(setAllBeers({ beers: res.data }));
-    };
-    getBeers();
+    dispatch(fetchBeers({ currentPage, perPage }));
   }, [currentPage]);
+
   const showDescription = (id: number) => {
     setShow([...show, id]);
   };
+
   const closeDescription = (id: number) => {
     setShow(show.filter(f => f !== id));
   };
+
   const delayed = useDebounce(searchValue, 1000);
+  if (loading) return <Preloader />;
   return (
     <div>
       <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       {allBeer
         .filter(beer => beer.name.toLowerCase().includes(delayed.toLowerCase()))
-        .map(m => (
-          <div key={m.id}>
-            <NavLink to={`beer/${m.id}`}>
-              {m.name} <img src={m.image_url} alt="#" />
-            </NavLink>
+        .map(({ id: ID, description, name, image_url: image }) => (
+          <div key={ID}>
+            <Link to={`beer/${ID}`}>
+              {name} <img src={image} alt="#" />
+            </Link>
             <div>
-              {m.description.length >= 140 ? (
+              {description.length >= 140 ? (
                 <div>
-                  {!show.some(id => id === m.id) ? (
+                  {!show.some(id => id === ID) ? (
                     <span>
-                      {m.description.slice(0, 140)}{' '}
-                      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-                      <img
-                        onClick={() => showDescription(m.id)}
-                        src={spreadImage}
-                        alt="#"
-                      />{' '}
+                      {description.slice(0, 140)}{' '}
+                      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                      <span onClick={() => showDescription(ID)}> &#8230;</span>
                     </span>
                   ) : (
                     <span>
-                      {m.description}{' '}
-                      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-                      <img
-                        onClick={() => closeDescription(m.id)}
-                        src={arrowImage}
-                        alt="#"
-                      />
+                      {description} {/* вынести в отдельную компоненту */}
+                      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                      <span onClick={() => closeDescription(ID)}>
+                        &#8592; свернуть описание
+                      </span>
                     </span>
                   )}
                 </div>
               ) : (
-                m.description
+                description
               )}
             </div>
           </div>
