@@ -1,4 +1,9 @@
-import { combineReducers, configureStore, ThunkDispatch } from '@reduxjs/toolkit';
+import {
+  AnyAction,
+  combineReducers,
+  configureStore,
+  ThunkDispatch,
+} from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import thunk from 'redux-thunk';
 
@@ -15,4 +20,5 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk),
 });
 export type RootState = ReturnType<typeof rootReducer>;
-export const useAppDispatch = () => useDispatch<ThunkDispatch<RootState, unknown, any>>();
+export const useAppDispatch = () =>
+  useDispatch<ThunkDispatch<RootState, unknown, AnyAction>>();

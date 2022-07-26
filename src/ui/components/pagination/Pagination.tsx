@@ -10,6 +10,8 @@ import {
 import { setCurrentPage } from '../../../bll/slices/beers';
 import { createPages } from '../../utilsFunc/createPages/createPages';
 
+import s from './Pagination.module.scss';
+
 const Pagination = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector(SelectCurrentPage);
@@ -20,10 +22,11 @@ const Pagination = () => {
   const pages: number[] = [];
   createPages(pages, pagesCount, currentPage);
   return (
-    <div>
+    <div className={s.pageContainer}>
       {pages.map((page, index) => (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <span
+          className={s.page}
           key={index.toString() + page}
           onClick={() => dispatch(setCurrentPage({ page }))}
         >

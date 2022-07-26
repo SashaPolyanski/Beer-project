@@ -1,0 +1,17 @@
+.inputWrapper{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  .input {
+    padding: 12px 12px 12px 40px;
+    width: 400px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.4s ease-in-out;
+    background-color: antiquewhite;
+    outline: none;
+    &:focus {
+      width: 550px;
+    }
+  }
+}

@@ -20,10 +20,35 @@ const Beer = () => {
 
   return (
     <div className={s.beerWrapper}>
-      {currentBeer.map(({ id: ID, name }) => (
-        <div key={ID}>{name}</div>
-      ))}
-      <Preloader />
+      {currentBeer.map(
+        ({
+          id: ID,
+          name,
+          image_url: image,
+          description,
+          food_pairing: foodPairing,
+          abv,
+          tagline,
+        }) => (
+          <div className={s.wrapper} key={ID}>
+            <div className={s.wrapperContent}>
+              <div className={s.imageWrapper}>
+                <img className={s.image} src={image} alt="#" />
+              </div>
+              <div className={s.contentWrapper}>
+                <div className={s.descriptionWrapper}>
+                  <div className={s.name}>
+                    {name} <span className={s.abv}>{abv}%</span>
+                  </div>
+                  <div className={s.tagLine}>{tagline}</div>
+                  <div className={s.description}>{description}</div>
+                  <div className={s.foodPairing}>Food Pairing: {foodPairing}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ),
+      )}
     </div>
   );
 };

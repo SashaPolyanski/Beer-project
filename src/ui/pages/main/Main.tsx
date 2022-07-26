@@ -16,6 +16,8 @@ import Preloader from '../../components/preloader/Preloader';
 import { useDebounce } from '../../utilsFunc/useDebounceHOOK/useDebounce';
 import Header from '../header/Header';
 
+import s from './Main.module.scss';
+
 const Main = () => {
   const [searchValue, setSearchValue] = useState('');
   const [show, setShow] = useState<number[]>([]);
@@ -41,42 +43,47 @@ const Main = () => {
   const delayed = useDebounce(searchValue, 1000);
   if (loading) return <Preloader />;
   return (
-    <div>
+    <>
       <Header searchValue={searchValue} setSearchValue={setSearchValue} />
-      {allBeer
-        .filter(beer => beer.name.toLowerCase().includes(delayed.toLowerCase()))
-        .map(({ id: ID, description, name, image_url: image }) => (
-          <div key={ID}>
-            <Link to={`beer/${ID}`}>
-              {name} <img src={image} alt="#" />
-            </Link>
-            <div>
-              {description.length >= 140 ? (
-                <div>
-                  {!show.some(id => id === ID) ? (
-                    <span>
-                      {description.slice(0, 140)}{' '}
-                      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-                      <span onClick={() => showDescription(ID)}> &#8230;</span>
-                    </span>
-                  ) : (
-                    <span>
-                      {description} {/* вынести в отдельную компоненту */}
-                      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-                      <span onClick={() => closeDescription(ID)}>
-                        &#8592; свернуть описание
-                      </span>
-                    </span>
-                  )}
+      <div className={s.mainWrapper}>
+        {allBeer
+          .filter(beer => beer.name.toLowerCase().includes(delayed.toLowerCase()))
+          .map(({ id: ID, description, name, image_url: image }) => (
+            <div className={s.wrapper} key={ID}>
+              <Link to={`beer/${ID}`} className={s.name}>
+                <div className={s.img}>
+                  <img className={s.img} src={image} alt="#" />
+                  <div>{name}</div>
                 </div>
-              ) : (
-                description
-              )}
+              </Link>
+              <div>
+                {description.length >= 140 ? (
+                  <div>
+                    {!show.some(id => id === ID) ? (
+                      <div>
+                        {description.slice(0, 140)}{' '}
+                        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                        <div onClick={() => showDescription(ID)}> &#8230;</div>
+                      </div>
+                    ) : (
+                      <div>
+                        {description} {/* вынести в отдельную компоненту */}
+                        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+                        <div onClick={() => closeDescription(ID)}>
+                          &#8592; свернуть описание
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  description
+                )}
+              </div>
             </div>
-          </div>
-        ))}
-      <Pagination />
-    </div>
+          ))}
+        <Pagination />
+      </div>
+    </>
   );
 };
 export default Main;

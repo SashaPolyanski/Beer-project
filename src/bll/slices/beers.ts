@@ -43,7 +43,7 @@ const beersSlice = createSlice({
     beers: [],
     beer: [],
     currentPage: 1,
-    perPage: 10,
+    perPage: 5,
     totalCount: 325,
   } as BeersStateType,
   reducers: {
