@@ -22,16 +22,15 @@ const Pagination = () => {
   const pages: number[] = [];
   createPages(pages, pagesCount, currentPage);
   return (
-    <div className={s.pageContainer}>
+    <div>
       {pages.map((page, index) => (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-        <span
-          className={s.page}
+        <button
+          type="button"
           key={index.toString() + page}
           onClick={() => dispatch(setCurrentPage({ page }))}
         >
           {page}
-        </span>
+        </button>
       ))}
     </div>
   );

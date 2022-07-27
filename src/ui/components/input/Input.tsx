@@ -1,5 +1,8 @@
 import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
+import ClearIcon from '../iconsSvg/clearIcon/ClearIcon';
+import SearchIcon from '../iconsSvg/searchIcon/SearchIcon';
+
 import s from './Input.module.scss';
 
 const Input = ({ onChange, onChangeText, ...restProps }: SuperInputTextPropsType) => {
@@ -8,6 +11,7 @@ const Input = ({ onChange, onChangeText, ...restProps }: SuperInputTextPropsType
   };
   return (
     <div className={s.inputWrapper}>
+      <SearchIcon />
       <input
         placeholder="search"
         className={s.input}
@@ -15,6 +19,7 @@ const Input = ({ onChange, onChangeText, ...restProps }: SuperInputTextPropsType
         onChange={onChangeCallback}
         {...restProps}
       />
+      <ClearIcon clearValue={onChangeText} />
     </div>
   );
 };
@@ -25,5 +30,5 @@ type DefaultInputPropsType = DetailedHTMLProps<
   HTMLInputElement
 >;
 type SuperInputTextPropsType = DefaultInputPropsType & {
-  onChangeText?: (value: string) => void;
+  onChangeText: (value: string) => void;
 };

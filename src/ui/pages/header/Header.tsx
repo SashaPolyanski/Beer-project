@@ -10,5 +10,5 @@ export default Header;
 
 type HeaderType = {
   searchValue: string;
-  setSearchValue: Dispatch<SetStateAction<string>>;
+  setSearchValue: (value: string) => void;
 };

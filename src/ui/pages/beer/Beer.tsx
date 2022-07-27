@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { SelectCurrentBeer } from '../../../bll/selectors/selectors';
 import { fetchBeer } from '../../../bll/slices/beers';
 import { useAppDispatch } from '../../../bll/store';
-import Preloader from '../../components/preloader/Preloader';
 
 import s from './Beer.module.scss';
 

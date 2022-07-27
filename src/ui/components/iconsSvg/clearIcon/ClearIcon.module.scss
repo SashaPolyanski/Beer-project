@@ -1,0 +1,12 @@
+.clear {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  opacity: 0.3;
+  cursor: pointer;
+  right: 30px;
+  top: 12px;
+  &:hover {
+    opacity: 0.5;
+  }
+}

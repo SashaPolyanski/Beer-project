@@ -11,8 +11,8 @@ import { appReducer } from './slices/app';
 import { beerReducer } from './slices/beers';
 
 const rootReducer = combineReducers({
-  beer: beerReducer,
-  app: appReducer,
+  beerReducer,
+  appReducer,
 });
 
 export const store = configureStore({
