@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import SM from './DescriptionBeer.module.scss';
+
 const DescriptionBeer = ({ description, ID }: DescriptionType) => {
   const [show, setShow] = useState<number[]>([]);
 
@@ -11,7 +13,7 @@ const DescriptionBeer = ({ description, ID }: DescriptionType) => {
     setShow(show.filter(f => f !== id));
   };
   return (
-    <div>
+    <div className={SM.description}>
       {description.length >= 140 ? (
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
