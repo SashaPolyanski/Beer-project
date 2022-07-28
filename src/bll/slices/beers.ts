@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { NumberConstants } from '../../common/constants/constants';
 import { api, ResponseType } from '../../dal/api';
 
-import { setLoading } from './app';
+import { setError, setLoading } from './app';
 
 type BeersStateType = {
   beers: ResponseType[];
@@ -38,22 +37,13 @@ export const fetchBeers = createAsyncThunk(
       }
 
       dispatch(setLoading({ value: false }));
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
+    } catch (error) {
+      dispatch(setError({ error: (error as Error).message }));
+      dispatch(setLoading({ value: false }));
+    }
   },
 );
-// export const fetchFilterBeers = createAsyncThunk(
-//   'beers/fetchFilterBeers',
-//   async (param: { beerName: string; perPage: number }, { dispatch }) => {
-//     try {
-//       dispatch(setLoading({ value: true }));
-//       const beers = await api.getFilteredBeers(param.beerName);
-//       dispatch(setAppFilterBeerPages({ beers }));
-//       dispatch(setLoading({ value: false }));
-//       // eslint-disable-next-line no-empty
-//     } catch (e) {}
-//   },
-// );
+
 export const fetchBeer = createAsyncThunk(
   'beers/fetchBeer',
   async (id: number, { dispatch }) => {
@@ -62,8 +52,10 @@ export const fetchBeer = createAsyncThunk(
       const beer = await api.getCurrentBeer(id);
       dispatch(setCurrentBeer({ beer }));
       dispatch(setLoading({ value: false }));
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
+    } catch (error) {
+      dispatch(setError({ error: (error as Error).message }));
+      dispatch(setLoading({ value: false }));
+    }
   },
 );
 
@@ -81,8 +73,12 @@ const beersSlice = createSlice({
       state.beers = action.payload.beers;
       state.totalCount = 325;
     },
-    setCurrentBeer(state, action: PayloadAction<{ beer: ResponseType[] }>) {
-      state.beer = action.payload.beer;
+    setCurrentBeer(state, action: PayloadAction<{ beer?: ResponseType[]; id?: number }>) {
+      if (action.payload.id) {
+        state.beer = state.beers.filter(f => f.id === action.payload.id);
+      } else {
+        action.payload.beer && (state.beer = action.payload.beer);
+      }
     },
     setCurrentPage(state, action: PayloadAction<{ page: number }>) {
       state.currentPage = action.payload.page;

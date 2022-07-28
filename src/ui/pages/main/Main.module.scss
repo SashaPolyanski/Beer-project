@@ -29,13 +29,12 @@ a {
       margin-top: 100px;
       margin-bottom: 20px;
       @media screen and (max-width: 1200px) {
-        font-size: 9px;
-        margin-top: 60px;
+        font-size: 12px;
       }
     }
 
     .imageWrapper {
-      height: 250px;
+      height: 350px;
       width: 350px;
       @media screen and (max-width: 700px) {
         width: 250px;
@@ -43,17 +42,6 @@ a {
       .img {
         height: 100%;
         margin-bottom: 20px;
-      }
-
-      @media screen and (max-width: 1300px) {
-        justify-content: center;
-        height: 100px;
-        .name {
-          color: antiquewhite;
-          @media screen and (max-width: 1200px) {
-            font-size: 13px;
-          }
-        }
       }
     }
   }

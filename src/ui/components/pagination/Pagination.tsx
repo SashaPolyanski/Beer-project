@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,8 +10,6 @@ import {
 import { setCurrentPage } from '../../../bll/slices/beers';
 import { createPages } from '../../../common/utils/createPages/createPages';
 import Button from '../button/Button';
-
-import SM from './Pagination.module.scss';
 
 const Pagination = () => {
   const dispatch = useDispatch();
@@ -25,7 +23,6 @@ const Pagination = () => {
 
   const pages: number[] = [];
   createPages(pages, pagesCount, currentPage);
-  console.log(totalCount);
 
   return (
     <div>

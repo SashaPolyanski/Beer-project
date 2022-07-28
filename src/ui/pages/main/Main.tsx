@@ -28,8 +28,16 @@ const Main = () => {
   const loading = useSelector(selectIsLoading);
   const dispatch = useAppDispatch();
   const delayed = useDebounce(searchValue, NumberConstants.DELAY);
+  // Ниже представлен костыль, с помощью которого мы можем сделать
+  // более-менее юзабельную пагинацию и уменьшить количество запросов.
+  // Данная апишка не располагает данными по общему количеству объектов.
+  // Так же общее количесво невозможно узнать, путем получения всего массива,
+  // сервер отдает по умолчанию только 25 объектов.
+  // Во время поиска сервер может вернуть нам максимум 80 объектов
+  // Поэтому пагинация будет ограничена 80 объектами во время поиска
+
   useEffect(() => {
-    if (searchValue !== '') {
+    if (searchValue) {
       dispatch(
         fetchBeers({
           currentPage,
@@ -54,7 +62,7 @@ const Main = () => {
         }),
       );
     }
-    if (touched && searchValue === '') {
+    if (touched && !!searchValue) {
       dispatch(fetchBeers({ currentPage, perPage, isTotalCountNeedUpdate: false }));
     }
   }, [delayed]);

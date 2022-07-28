@@ -20,13 +20,6 @@ export const api = {
   getCurrentBeer(id: number) {
     return instance.get<ResponseType[]>(`${Url.BEERS}/${id}`).then(res => res.data);
   },
-  // getFilteredBeers(beerName: string) {
-  //   return instance
-  //     .get<ResponseType[]>(Url.BEERS, {
-  //       params: { beer_name: beerName },
-  //     })
-  //     .then(res => res.data);
-  // },
 };
 
 export type ResponseType = {

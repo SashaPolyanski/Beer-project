@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './ClearIcon.module.scss';
+import SM from './ClearIcon.module.scss';
 
 const ClearIcon = ({ clearValue }: clearPropsType) => {
   const clearValueHandler = () => {
@@ -9,7 +9,7 @@ const ClearIcon = ({ clearValue }: clearPropsType) => {
   return (
     <svg
       onClick={clearValueHandler}
-      className={s.clear}
+      className={SM.clear}
       height="48"
       viewBox="0 0 48 48"
       width="48"

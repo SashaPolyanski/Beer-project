@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './SearchIcon.module.scss';
+import SM from './SearchIcon.module.scss';
 
 const SearchIcon = () => (
   <svg
@@ -10,7 +10,7 @@ const SearchIcon = () => (
     x="0px"
     y="0px"
     viewBox="0 0 501.984 501.984"
-    className={s.icon}
+    className={SM.icon}
     xmlSpace="preserve"
   >
     <g>
