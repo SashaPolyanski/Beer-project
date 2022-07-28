@@ -1,6 +1,8 @@
 .beerWrapper {
   height: 100vh;
   width: 100%;
+  position: relative;
+  animation: showRight 1.5s;
 
   .name {
     font-family: 'Nosifer', cursive;
@@ -27,12 +29,14 @@
 
     .image {
       height: 100%;
+      position: relative;
     }
   }
 
   .contentWrapper {
     display: flex;
     flex-wrap: wrap;
+
   }
 
   .descriptionWrapper {
@@ -69,5 +73,17 @@
       font-family: 'Russo One', sans-serif;
     }
   }
+}
+
+@keyframes showRight {
+
+  from {
+    right: -100%;
+  }
+
+  to {
+    right: 0;
+  }
+
 }
 

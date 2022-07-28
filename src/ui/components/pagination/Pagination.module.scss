@@ -1,11 +1,15 @@
-.pageContainer {
-  display: block;
-}
-.page {
-  margin: 5px;
+.buttonPage {
+  margin-left: 10px;
+  padding: 10px 20px 10px 20px;
   color: antiquewhite;
-  font-size: 25px;
-  padding: 10px;
-  border: 1px solid antiquewhite;
+  background-color: black;
+  border-radius: 5px;
   cursor: pointer;
+
+}
+.active {
+  animation: all 1s;
+  padding: 12px 22px 12px 22px;
+  background-color: antiquewhite;
+  color: black;
 }

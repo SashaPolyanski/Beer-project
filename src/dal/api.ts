@@ -1,23 +1,32 @@
+import { NumberConstants, Url } from '../common/constants/constants';
+
 import { instance } from './settings';
 
 export const api = {
-  getBeers(page: number, perPage: number) {
+  getBeers(page: number, perPage: number, beerName?: string) {
     return instance
-      .get<ResponseType[]>(`beers`, {
-        params: { page, per_page: perPage },
+      .get<ResponseType[]>(Url.BEERS, {
+        params: { page, per_page: perPage, beer_name: beerName },
       })
       .then(res => res.data);
+  },
+  getTotalCount(beerName?: string) {
+    return instance
+      .get<ResponseType[]>(Url.BEERS, {
+        params: { beer_name: beerName, per_page: 80 },
+      })
+      .then(res => res.data.length);
   },
   getCurrentBeer(id: number) {
-    return instance.get<ResponseType[]>(`beers/${id}`).then(res => res.data);
+    return instance.get<ResponseType[]>(`${Url.BEERS}/${id}`).then(res => res.data);
   },
-  getFilteredBeers(beerName: string, perPage: number) {
-    return instance
-      .get<ResponseType[]>('beers', {
-        params: { beer_name: beerName, per_page: perPage },
-      })
-      .then(res => res.data);
-  },
+  // getFilteredBeers(beerName: string) {
+  //   return instance
+  //     .get<ResponseType[]>(Url.BEERS, {
+  //       params: { beer_name: beerName },
+  //     })
+  //     .then(res => res.data);
+  // },
 };
 
 export type ResponseType = {

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { SelectCurrentBeer } from '../../../bll/selectors/selectors';
+import { selectCurrentBeer } from '../../../bll/selectors/selectors';
 import { fetchBeer } from '../../../bll/slices/beers';
 import { useAppDispatch } from '../../../bll/store';
 
@@ -12,7 +12,7 @@ import s from './Beer.module.scss';
 const Beer = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const currentBeer = useSelector(SelectCurrentBeer);
+  const currentBeer = useSelector(selectCurrentBeer);
   useEffect(() => {
     id && dispatch(fetchBeer(+id));
   }, []);

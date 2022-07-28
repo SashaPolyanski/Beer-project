@@ -1,4 +1,10 @@
-.preloader {
-  width: 400px;
-  height: 300px;
+.preloaderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+  .preloader {
+    width: 400px;
+    height: 300px;
+  }
 }

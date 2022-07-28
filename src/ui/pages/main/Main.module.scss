@@ -1,24 +1,28 @@
 .mainWrapper {
-  height: calc(100vh - 350px);
+  height: calc(100vh - 250px);
   width: 100%;
   display: flex;
   justify-content: space-around;
+  position: relative;
+  animation: showRight 1.5s;
 
-  .name {
-    color: blanchedalmond;
+  .nameWrapper {
     min-height: 700px;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
     font-family: 'Nosifer', cursive;
-    background: url("../../../assets/images/backgroundblock.Q.png");
+    color: antiquewhite;
+    text-decoration: none;
     .imageWrapper {
-      height: 300px;
-      width: 300px;
+      height: 150px;
+      width: 350px;
     }
     .description {
-      font-size: 10px;
+      font-size: 13px;
       color: antiquewhite;
-
+    }
+    .name {
+      color: antiquewhite;
     }
   }
   .img {
@@ -27,7 +31,17 @@
   }
 }
 .pagination {
-  margin-top: 100px;
   display: flex;
   justify-content: center;
+}
+@keyframes showRight {
+
+  from {
+    right: -100%;
+  }
+
+  to {
+    right: 0;
+  }
+
 }

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { NumberConstants } from '../../common/constants/constants';
 import { api, ResponseType } from '../../dal/api';
 
 import { setLoading } from './app';
@@ -14,28 +15,45 @@ type BeersStateType = {
 
 export const fetchBeers = createAsyncThunk(
   'beers/fetchBeers',
-  async (param: { currentPage: number; perPage: number }, { dispatch }) => {
+  async (
+    param: {
+      currentPage: number;
+      perPage: number;
+      beerName?: string;
+      isTotalCountNeedUpdate: boolean;
+    },
+    { dispatch },
+  ) => {
     try {
       dispatch(setLoading({ value: true }));
-      const beers = await api.getBeers(param.currentPage, param.perPage);
-      dispatch(setAllBeers({ beers }));
+      const beers = await api.getBeers(param.currentPage, param.perPage, param.beerName);
+      if (param.beerName) {
+        if (param.isTotalCountNeedUpdate) {
+          const totalCount = await api.getTotalCount(param.beerName);
+          dispatch(setTotalCount({ totalCount }));
+        }
+        dispatch(setFilteredBeers({ beers }));
+      } else {
+        dispatch(setAllBeers({ beers }));
+      }
+
       dispatch(setLoading({ value: false }));
       // eslint-disable-next-line no-empty
     } catch (e) {}
   },
 );
-export const fetchFilterBeers = createAsyncThunk(
-  'beers/fetchFilterBeers',
-  async (param: { beerName: string; perPage: number }, { dispatch }) => {
-    try {
-      dispatch(setLoading({ value: true }));
-      const beers = await api.getFilteredBeers(param.beerName, param.perPage);
-      dispatch(setAppFilterBeerPages({ beers }));
-      dispatch(setLoading({ value: false }));
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
-  },
-);
+// export const fetchFilterBeers = createAsyncThunk(
+//   'beers/fetchFilterBeers',
+//   async (param: { beerName: string; perPage: number }, { dispatch }) => {
+//     try {
+//       dispatch(setLoading({ value: true }));
+//       const beers = await api.getFilteredBeers(param.beerName);
+//       dispatch(setAppFilterBeerPages({ beers }));
+//       dispatch(setLoading({ value: false }));
+//       // eslint-disable-next-line no-empty
+//     } catch (e) {}
+//   },
+// );
 export const fetchBeer = createAsyncThunk(
   'beers/fetchBeer',
   async (id: number, { dispatch }) => {
@@ -55,8 +73,8 @@ const beersSlice = createSlice({
     beers: [],
     beer: [],
     currentPage: 1,
-    perPage: 5,
-    totalCount: 0,
+    perPage: 4,
+    totalCount: 325,
   } as BeersStateType,
   reducers: {
     setAllBeers(state, action: PayloadAction<{ beers: ResponseType[] }>) {
@@ -69,13 +87,20 @@ const beersSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<{ page: number }>) {
       state.currentPage = action.payload.page;
     },
-    setAppFilterBeerPages(state, action: PayloadAction<{ beers: ResponseType[] }>) {
+    setTotalCount(state, action: PayloadAction<{ totalCount: number }>) {
+      state.totalCount = action.payload.totalCount;
+    },
+    setFilteredBeers(state, action: PayloadAction<{ beers: ResponseType[] }>) {
       state.beers = action.payload.beers;
-      state.totalCount = state.beers.length;
     },
   },
 });
 
-export const { setAllBeers, setCurrentBeer, setCurrentPage, setAppFilterBeerPages } =
-  beersSlice.actions;
+export const {
+  setAllBeers,
+  setCurrentBeer,
+  setCurrentPage,
+  setTotalCount,
+  setFilteredBeers,
+} = beersSlice.actions;
 export const beerReducer = beersSlice.reducer;
