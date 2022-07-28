@@ -9,11 +9,20 @@
     font-size: 70px;
     padding-top: 50px;
     margin-bottom: 10px;
+    @media screen and (max-width: 1200px) {
+      font-size: 40px;
+    }
+    @media screen and (max-width: 1000px) {
+    font-size: 30px;
+  }
   }
 
   .wrapper {
     color: blanchedalmond;
     font-size: 35px;
+    @media screen and (max-width: 1000px) {
+      font-size: 25px;
+    }
   }
 
   .wrapperContent {
@@ -26,6 +35,18 @@
     height: 650px;
     margin-left: 100px;
     margin-top: 130px;
+    @media screen and (max-width: 1200px) {
+      height: 550px;
+    }
+    @media screen and (max-width: 830px) {
+      margin-left: 30px;
+    }
+    @media screen and (max-width: 650px) {
+      height: 450px;
+    }
+    @media screen and (max-width: 560px) {
+      display: none;
+    }
 
     .image {
       height: 100%;
@@ -36,11 +57,9 @@
   .contentWrapper {
     display: flex;
     flex-wrap: wrap;
-
   }
 
   .descriptionWrapper {
-    height: 90%;
     width: 80%;
     padding: 20px;
     border-radius: 2%;
@@ -48,6 +67,9 @@
     background-image: url('../../../assets/images/backgroundblock.Q.png');
     position: relative;
     top: 100px;
+    @media screen and (max-width: 560px) {
+      margin: 0 auto;
+    }
 
     .tagLine {
       margin-bottom: 20px;
@@ -65,12 +87,27 @@
       text-align: left;
       margin-bottom: 50px;
       font-family: 'Russo One', sans-serif;
+      @media screen and (max-width: 1200px) {
+        font-size: 20px;
+      }
+      @media screen and (max-width: 1000px) {
+        font-size: 18px;
+      }
+      @media screen and (max-width: 830px) {
+        font-size: 15px;
+      }
     }
 
     .foodPairing {
       font-size: 25px;
       text-align: left;
       font-family: 'Russo One', sans-serif;
+      @media screen and (max-width: 1000px) {
+        font-size: 18px;
+      }
+      @media screen and (max-width: 830px) {
+        font-size: 15px;
+      }
     }
   }
 }
