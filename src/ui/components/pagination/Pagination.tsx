@@ -9,6 +9,7 @@ import {
 } from '../../../bll/selectors/selectors';
 import { setCurrentPage } from '../../../bll/slices/beers';
 import { createPages } from '../../../common/utils/createPages/createPages';
+import Button from '../button/Button';
 
 import SM from './Pagination.module.scss';
 
@@ -29,16 +30,13 @@ const Pagination = () => {
   return (
     <div>
       {pages.map((page, index) => (
-        <button
-          type="button"
+        <Button
           key={index.toString() + page}
-          onClick={() => changeCurrentPage(page)}
-          className={
-            currentPage === page ? `${SM.buttonPage} ${SM.active}` : SM.buttonPage
-          }
-        >
-          {page}
-        </button>
+          previousHandler={() => changeCurrentPage(page)}
+          name={page}
+          page={page}
+          currentPage={currentPage}
+        />
       ))}
     </div>
   );
