@@ -4,10 +4,10 @@
   box-sizing: border-box;
 }
 body {
-  height: 100vh;
   width: 100%;
   background-image: url('./assets/images/bgMain.jpg');
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Tapestry&display=swap');

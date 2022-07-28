@@ -1,39 +1,69 @@
+a {
+  color: antiquewhite;
+  text-decoration: none;
+}
+
 .mainWrapper {
-  height: calc(100vh - 250px);
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-around;
-  position: relative;
   animation: showRight 1.5s;
+  flex-wrap: wrap;
 
-  .nameWrapper {
-    min-height: 700px;
+
+  .wrapper {
+    width: 350px;
     font-size: 20px;
     text-align: center;
     font-family: 'Nosifer', cursive;
     color: antiquewhite;
-    text-decoration: none;
-    .imageWrapper {
-      height: 150px;
-      width: 350px;
+    @media screen and (max-width: 700px) {
+      width: 250px;
     }
+
     .description {
       font-size: 13px;
       color: antiquewhite;
+      margin-top: 100px;
+      margin-bottom: 20px;
+      @media screen and (max-width: 1200px) {
+        font-size: 9px;
+        margin-top: 60px;
+      }
     }
-    .name {
-      color: antiquewhite;
-    }
-  }
-  .img {
-    height: 100%;
 
+    .imageWrapper {
+      height: 150px;
+      width: 350px;
+      @media screen and (max-width: 700px) {
+        width: 250px;
+      }
+      .img {
+        height: 100%;
+        margin-bottom: 20px;
+      }
+
+      @media screen and (max-width: 1300px) {
+        justify-content: center;
+        height: 100px;
+        .name {
+          color: antiquewhite;
+          @media screen and (max-width: 1200px) {
+            font-size: 13px;
+          }
+        }
+      }
+    }
   }
 }
+
 .pagination {
   display: flex;
   justify-content: center;
+
 }
+
 @keyframes showRight {
 
   from {
