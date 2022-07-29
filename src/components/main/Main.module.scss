@@ -1,0 +1,29 @@
+a {
+  color: antiquewhite;
+  text-decoration: none;
+}
+
+.mainWrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  animation: showRight 1.5s;
+  flex-wrap: wrap;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes showRight {
+
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}

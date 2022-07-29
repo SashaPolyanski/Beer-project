@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-import Input from '../../components/input/Input';
+import Input from '../input/Input';
 
 const Header = ({ searchValue, setSearchValue }: HeaderType) => (
   <Input onChangeText={setSearchValue} value={searchValue} />

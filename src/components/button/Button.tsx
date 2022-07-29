@@ -2,7 +2,7 @@ import React from 'react';
 
 import SM from './Button.module.scss';
 
-const Button = ({ name, previousHandler, currentPage, page }: ButtonProps) => {
+const Button = ({ name, previousHandler, currentPage, page }: ButtonType) => {
   const finalClassName =
     currentPage === page ? `${SM.buttonPage} ${SM.active}` : SM.buttonPage;
 
@@ -12,7 +12,7 @@ const Button = ({ name, previousHandler, currentPage, page }: ButtonProps) => {
     </button>
   );
 };
-type ButtonProps = {
+type ButtonType = {
   name: string | number;
   previousHandler?: () => void;
   currentPage?: number;

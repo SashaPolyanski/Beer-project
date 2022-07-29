@@ -15,22 +15,23 @@ const DescriptionBeer = ({ description, ID }: DescriptionType) => {
   return (
     <div className={SM.description}>
       {description.length >= 140 ? (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
-        <>
+        <div>
           {!show.some(id => id === ID) ? (
             <div>
-              {description.slice(0, 140)}{' '}
-              {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-              <div onClick={() => showDescription(ID)}> &#8230;</div>
+              {description.slice(0, 140)}
+              <button type="button" onClick={() => showDescription(ID)}>
+                &#8230;
+              </button>
             </div>
           ) : (
             <div>
-              {description} {/* вынести в отдельную компоненту */}
-              {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-              <div onClick={() => closeDescription(ID)}>&#8592; свернуть описание</div>
+              {description}
+              <button type="button" onClick={() => closeDescription(ID)}>
+                &#8592; свернуть описание
+              </button>
             </div>
           )}
-        </>
+        </div>
       ) : (
         description
       )}

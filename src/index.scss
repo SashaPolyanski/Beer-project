@@ -1,14 +1,38 @@
-*{
+button {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  background: transparent;
+  margin: 0;
+  border: none;
+  outline: none;
+  color: inherit
+}
+
+button {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   width: 100%;
   background-image: url('./assets/images/bgMain.jpg');
   overflow-x: hidden;
   overflow-y: auto;
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Tapestry&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');

@@ -5,7 +5,7 @@ import SearchIcon from '../iconsSvg/searchIcon/SearchIcon';
 
 import SM from './Input.module.scss';
 
-const Input = ({ onChange, onChangeText, ...restProps }: SuperInputTextPropsType) => {
+const Input = ({ onChange, onChangeText, ...restProps }: InputType) => {
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     onChangeText && onChangeText(e.currentTarget.value);
   };
@@ -29,6 +29,6 @@ type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
-type SuperInputTextPropsType = DefaultInputPropsType & {
+type InputType = DefaultInputPropsType & {
   onChangeText: (value: string) => void;
 };

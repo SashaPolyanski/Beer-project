@@ -2,13 +2,14 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import Beer from './pages/beer/Beer';
-import Main from './pages/main/Main';
+import { PATH } from './common/constants/constants';
+import Main from './components/main/Main';
+import Product from './components/product/Product';
 
 const App = () => (
   <Routes>
-    <Route path="/" element={<Main />} />
-    <Route path="beer/:id" element={<Beer />} />
+    <Route path={PATH.MAIN} element={<Main />} />
+    <Route path={PATH.PRODUCT} element={<Product />} />
   </Routes>
 );
 

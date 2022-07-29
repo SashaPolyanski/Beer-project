@@ -3,10 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ResponseType } from '../../api/api';
-import SM from '../../pages/main/Main.module.scss';
 import DescriptionBeer from '../descriptionBeer/DescriptionBeer';
 
-const BeersBlock = ({ id: ID, description, name, image_url: image }: ResponseType) => (
+import SM from './ProductBlock.module.scss';
+
+const ProductBlock = ({ id: ID, description, name, image_url: image }: ResponseType) => (
   <div className={SM.wrapper} key={ID}>
     <div className={SM.imageWrapper}>
       <Link to={`beer/${ID}`}>
@@ -20,4 +21,4 @@ const BeersBlock = ({ id: ID, description, name, image_url: image }: ResponseTyp
   </div>
 );
 
-export default BeersBlock;
+export default ProductBlock;

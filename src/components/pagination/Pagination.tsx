@@ -2,13 +2,13 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createPages } from '../../common/utils/createPages';
 import {
   selectCurrentPage,
   selectPerPage,
   selectTotalCount,
 } from '../../store/selectors/selectors';
 import { setCurrentPage } from '../../store/slices/beers';
+import { createPages } from '../../utils/createPages';
 import Button from '../button/Button';
 
 const Pagination = () => {

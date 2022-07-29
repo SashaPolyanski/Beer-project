@@ -7,3 +7,7 @@ export enum ConstantsNumber {
   TOTAL_COUNT = 325,
   per_page = 80,
 }
+export const PATH = {
+  MAIN: '/',
+  PRODUCT: 'beer/:id',
+};

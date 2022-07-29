@@ -3,10 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { ConstantsNumber } from '../../common/constants/constants';
-import { useDebounce } from '../../common/utils/useDebounce';
-import BeersBlock from '../../components/beersBlock/BeersBlock';
-import Pagination from '../../components/pagination/Pagination';
-import Preloader from '../../components/preloader/Preloader';
 import {
   selectAllBeer,
   selectCurrentPage,
@@ -15,7 +11,11 @@ import {
 } from '../../store/selectors/selectors';
 import { fetchBeers } from '../../store/slices/beers';
 import { useAppDispatch } from '../../store/store';
+import { useDebounce } from '../../utils/useDebounce';
+import ProductBlock from '../beersBlock/ProductBlock';
 import Header from '../header/Header';
+import Pagination from '../pagination/Pagination';
+import Preloader from '../preloader/Preloader';
 
 import SM from './Main.module.scss';
 
@@ -68,7 +68,7 @@ const Main = () => {
   }, [delayed]);
 
   if (loading) return <Preloader />;
-  const allBears = allBeer.map(item => <BeersBlock key={item.id} {...item} />);
+  const allBears = allBeer.map(item => <ProductBlock key={item.id} {...item} />);
   return (
     <>
       <Header searchValue={searchValue} setSearchValue={setSearchValue} />
