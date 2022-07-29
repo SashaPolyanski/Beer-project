@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import Beer from './ui/pages/beer/Beer';
-import Main from './ui/pages/main/Main';
+import Beer from './pages/beer/Beer';
+import Main from './pages/main/Main';
 
 const App = () => (
   <Routes>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { ResponseType } from '../../../dal/api';
+import { ResponseType } from '../../api/api';
 import SM from '../../pages/main/Main.module.scss';
 import DescriptionBeer from '../descriptionBeer/DescriptionBeer';
 

@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
+import { ConstantsNumber } from '../../common/constants/constants';
+import { useDebounce } from '../../common/utils/useDebounce';
+import BeersBlock from '../../components/beersBlock/BeersBlock';
+import Pagination from '../../components/pagination/Pagination';
+import Preloader from '../../components/preloader/Preloader';
 import {
   selectAllBeer,
   selectCurrentPage,
   selectIsLoading,
   selectPerPage,
-} from '../../../bll/selectors/selectors';
-import { fetchBeers } from '../../../bll/slices/beers';
-import { useAppDispatch } from '../../../bll/store';
-import { NumberConstants } from '../../../common/constants/constants';
-import { useDebounce } from '../../../common/utils/useDebounceHOOK/useDebounce';
-import BeersBlock from '../../components/beersBlock/BeersBlock';
-import Pagination from '../../components/pagination/Pagination';
-import Preloader from '../../components/preloader/Preloader';
+} from '../../store/selectors/selectors';
+import { fetchBeers } from '../../store/slices/beers';
+import { useAppDispatch } from '../../store/store';
 import Header from '../header/Header';
 
 import SM from './Main.module.scss';
@@ -27,7 +27,7 @@ const Main = () => {
   const currentPage = useSelector(selectCurrentPage);
   const loading = useSelector(selectIsLoading);
   const dispatch = useAppDispatch();
-  const delayed = useDebounce(searchValue, NumberConstants.DELAY);
+  const delayed = useDebounce(searchValue, ConstantsNumber.DELAY);
   // Ниже представлен костыль, с помощью которого мы можем сделать
   // более-менее юзабельную пагинацию и уменьшить количество запросов.
   // Данная апишка не располагает данными по общему количеству объектов.

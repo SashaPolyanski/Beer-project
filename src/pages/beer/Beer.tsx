@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { selectAllBeer, selectCurrentBeer } from '../../../bll/selectors/selectors';
-import { fetchBeer, setCurrentBeer } from '../../../bll/slices/beers';
-import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
+import { selectAllBeer, selectCurrentBeer } from '../../store/selectors/selectors';
+import { fetchBeer, setCurrentBeer } from '../../store/slices/beers';
+import { useAppDispatch } from '../../store/store';
 
 import SM from './Beer.module.scss';
 

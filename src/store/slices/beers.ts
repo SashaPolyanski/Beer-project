@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { api, ResponseType } from '../../dal/api';
+import { api, ResponseType } from '../../api/api';
+import { ConstantsNumber } from '../../common/constants/constants';
 
 import { setError, setLoading } from './app';
 
@@ -66,12 +67,12 @@ const beersSlice = createSlice({
     beer: [],
     currentPage: 1,
     perPage: 4,
-    totalCount: 325,
+    totalCount: ConstantsNumber.TOTAL_COUNT,
   } as BeersStateType,
   reducers: {
     setAllBeers(state, action: PayloadAction<{ beers: ResponseType[] }>) {
       state.beers = action.payload.beers;
-      state.totalCount = 325;
+      state.totalCount = ConstantsNumber.TOTAL_COUNT;
     },
     setCurrentBeer(state, action: PayloadAction<{ beer?: ResponseType[]; id?: number }>) {
       if (action.payload.id) {

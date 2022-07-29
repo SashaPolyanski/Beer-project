@@ -1,4 +1,4 @@
-import { NumberConstants, Url } from '../common/constants/constants';
+import { ConstantsNumber, Url } from '../common/constants/constants';
 
 import { instance } from './settings';
 
@@ -13,7 +13,7 @@ export const api = {
   getTotalCount(beerName?: string) {
     return instance
       .get<ResponseType[]>(Url.BEERS, {
-        params: { beer_name: beerName, per_page: 80 },
+        params: { beer_name: beerName, per_page: ConstantsNumber.per_page },
       })
       .then(res => res.data.length);
   },
@@ -21,6 +21,9 @@ export const api = {
     return instance.get<ResponseType[]>(`${Url.BEERS}/${id}`).then(res => res.data);
   },
 };
+
+// Типизировал только часть стейта, если приложение будет расширяться,
+// то нужно делать типизацию всего респонса
 
 export type ResponseType = {
   id: number;
